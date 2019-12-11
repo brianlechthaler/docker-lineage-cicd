@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Nicola Corna <nicola@corna.info>
+MAINTAINER Brian Lechthaler
 
 # Environment variables
 #######################
@@ -16,7 +16,7 @@ ENV LOGS_DIR /srv/logs
 ENV USERSCRIPTS_DIR /srv/userscripts
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV USER root
+ENV USER op3tbbb
 
 # Configurable environment variables
 ####################################
@@ -32,11 +32,11 @@ ENV CCACHE_SIZE 50G
 
 # Environment for the LineageOS branches name
 # See https://github.com/LineageOS/android_vendor_cm/branches for possible options
-ENV BRANCH_NAME 'lineage-16.0'
+ENV BRANCH_NAME 'lineage-17.0'
 
 # Environment for the device list (separate by comma if more than one)
 # eg. DEVICE_LIST=hammerhead,bullhead,angler
-ENV DEVICE_LIST ''
+ENV DEVICE_LIST 'oneplus3'
 
 # Release type string
 ENV RELEASE_TYPE 'UNOFFICIAL'
@@ -46,15 +46,15 @@ ENV RELEASE_TYPE 'UNOFFICIAL'
 ENV OTA_URL ''
 
 # User identity
-ENV USER_NAME 'LineageOS Buildbot'
-ENV USER_MAIL 'lineageos-buildbot@docker.host'
+ENV USER_NAME 'Brians Build Bot'
+ENV USER_MAIL 'tweak@docker-lineage-cicd'
 
 # Include proprietary files, downloaded automatically from github.com/TheMuppets/ and gitlab.com/the-muppets/
 # Only some branches are supported
 ENV INCLUDE_PROPRIETARY true
 
 # Mount an overlay filesystem over the source dir to do each build on a clean source
-ENV BUILD_OVERLAY false
+ENV BUILD_OVERLAY true
 
 # Clone the full LineageOS mirror (> 200 GB)
 ENV LOCAL_MIRROR false
@@ -80,10 +80,10 @@ ENV ANDROID_JACK_VM_ARGS "-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4G"
 ENV CUSTOM_PACKAGES ''
 
 # Sign the builds with the keys in $KEYS_DIR
-ENV SIGN_BUILDS false
+ENV SIGN_BUILDS true
 
 # When SIGN_BUILDS = true but no keys have been provided, generate a new set with this subject
-ENV KEYS_SUBJECT '/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
+ENV KEYS_SUBJECT '/C=US/ST=California/L=Belmont/O=Android/OU=Android/CN=brianBuildBot/emailAddress=brianlechthaler@protonmail.ch'
 
 # Move the resulting zips to $ZIP_DIR/$codename instead of $ZIP_DIR/
 ENV ZIP_SUBDIR true
